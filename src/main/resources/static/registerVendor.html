@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Cognizant - Bill Payment System</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="all,follow">
+   <!-- Bootstrap CSS-->
+   <link rel="stylesheet" href="css\bootstrap.min.css">
+   <!-- Font Awesome CSS-->
+   <!-- <link rel="stylesheet" href="css\font-awesome.min.css"> -->
+   <!-- Google fonts - Poppins-->
+   <link rel="stylesheet" 
+   href="//fonts.googleapis.com/css?family=Poppins:300,400,600">
+   <!-- Custom font icons-->
+   <!-- <link rel="stylesheet" href="css\fontastic.css"> -->
+   <!-- theme stylesheet-->
+   <link rel="stylesheet" href="css\style.css" id="theme-stylesheet">
+   <!-- Custom stylesheet - for your changes-->
+   <link rel="stylesheet" href="css\main.css">
+   <!-- Favicon-->
+   <!-- Tweaks for older IEs--><!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+       <script src="js/jquery.js"></script>
+       <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+      <script src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+      <script src="js/countries.js"></script>
+       <script src="js/bootstrap.js"></script>
+       <script src="js/script.js"></script>
+     <!--   <script src="js/dashboard.js"></script>
+ -->       <script src="js/vendor.js"></script>
+
+    </head>
+<body onpageshow="init()">
+ 
+    <header class="header">
+          <nav class="navbar navbar-expand-lg fixed-top">
+              <span style="font-size:30px;cursor:pointer;color:rgb(250, 84, 112)" onclick="openNav()">&#9776;</span>
+
+              <script>
+                  function openNav() {
+                    document.getElementById("myNav").style.width = "17%";
+                  }
+                  
+                  function closeNav() {
+                    document.getElementById("myNav").style.width = "0%";
+                  }
+                  </script>
+                <!-- <div class="container"><a href="./" class="navbar-brand"><img src="images\icon.png" alt="" class="img-fluid logo"></a> -->
+                  <div id="myNav" class="overlay">
+                      
+                    <br><a href="./" class="navbar-brand"><img src="images\icon.png" alt="" class="img-fluid logo"></a>
+                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                      <div class="overlay-content">
+                          <a href="/dashboard.html">Home</a>
+                          <a href="/registerVendor.html">Register Vendor</a>
+                          <a href="updateVendor.html">Update Vendor</a>
+                          <a href="/registerCustomer.html">Register Customer</a>
+                          <a href="/updateCustomer.html">Update Customer</a>
+                          <a href="/billupdate.html">Pay your Bill</a>
+                      </div>
+                      
+                    </div>
+            <div class="container text-center">
+                <h1 class="hero-heading">Vendor Registration Form</h1>
+                <!-- <div class="row">
+                  <div class="col-lg-7 mx-auto">
+                    <p class="lead text-muted mt-2">Register the vendor by providing all necessary information.</p>
+                  </div>
+                </div> -->
+                <a class="btn btn-primary navbar-btn ml-0 ml-lg-3 login-button" onclick="logout()">Logout </a>
+              </div>
+            </div></nav>
+           
+            </div>
+          </div></header>
+          
+    
+    <!-- Hero Section-->
+    <section class="hero">
+      
+
+      <div class="container">
+        <header class="section-header">
+          <p class="lead">Please submit your information and we will register new vendor in system.</p>
+        </header>
+      </div>
+
+        <div class="container">
+            <div class="row align-items-center mt-5">
+                <div class="col-lg-7">
+
+
+                    <form action="javascript:registerVendor()" class="contact-form text-left" id = "vendor-form" name = "vendor-form" onsubmit="return false">
+                    <div class="form-group mb-4">
+                      <label>Name<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorName" name="name" placeholder="e.g. Reheja Associates Pvt Ltd" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Company Registration Number<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorCompanyRegistrationNo" name="regNumber" placeholder="XXXXX" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>VendorType<sup class="text-primary">&#10033;</sup></label>
+                      <select id="vendorType" name = "vendorType">
+                          <option value="0">Select</option>
+                          <option value="Electricity">Electricity</option>
+                          <option value="Telephone">Telephone</option>
+                          <option value="Insurance">Insurance</option>
+                          <option value="Tax">Tax</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Address<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorAddress" name="address" placeholder="e.g. Ward Nno 8,Thiruvalluvar street ," class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Country<sup class="text-primary">&#10033;</sup></label>
+                      <select id="vendorCountry" name ="country"></select> 
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>State<sup class="text-primary">&#10033;</sup></label>
+                      <select name ="state" id ="vendorState"></select>
+                    </div>
+                    <script language="javascript">
+                      populateCountries("vendorCountry", "vendorState"); // first parameter is id of country drop-down and second parameter is id of state drop-down
+                    </script>
+                    <div class="form-group mb-4">
+                      <label>Email<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorEmail" name="email" placeholder="name@company.com" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Contact Number<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorContact" name="number" placeholder="e.g. 9876567898" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Website<sup class="text-primary">&#10033;</sup></label>
+                      <input type="text" id="vendorWebsite" name="website" placeholder="https://www.company.com" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Certificate Issue on<sup class="text-primary">&#10033;</sup></label>
+                      <input  type="date" id="vendorCertificateIssuedDate" name="issueDate" readonly>
+                      <script>
+                          document.getElementById('vendorCertificateIssuedDate').value = new Date().toISOString().substring(0, 10);
+                      </script>
+                    <br><br>
+                    
+                    
+                      <label>Certificate Valid till<sup class="text-primary">&#10033;</sup></label>
+                      <input  type="date" id="vendorCertificateValidityDate" name="expiryDate" readonly>
+                      <script>
+                        function add_years(dt,n) 
+                            {
+                            return new Date(dt.setFullYear(dt.getFullYear() + n));      
+                            }
+                          document.getElementById('vendorCertificateValidityDate').value = add_years(new Date(), 15).toISOString().substring(0, 10) ;
+                      </script>
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Total No. of Employees<sup class="text-primary">&#10033;</sup></label>
+                      <input type="number" id="vendorEmployeesCount" name="empCount" placeholder="e.g. 100" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Total No. of Customers<sup class="text-primary">&#10033;</sup></label>
+                      <input type="number" id="vendorCustomerCount" name="custCount" placeholder="e.g. 100" class="form-control">
+                    </div>
+                    <div class="form-group mb-4">
+                      <label>Month and Year of Establishment<sup class="text-primary">&#10033;</sup></label>
+                      <input  type="number" id="vendorYearOfEstablishment" name="estYear"  class="form-control">
+                      <!--max = 'new Date()' -->
+                      <!-- <script>
+                          document.getElementById('vendorYearOfEstablishment').max = new Date().toISOString().substring(0, 10);
+                      </script> -->
+                    </div>
+                    
+                    <div class="form-group">
+                        <input type="submit" value="Register" class="btn btn-primary">
+                      </div>
+                    </form>
+                  </div>
+                </div>
+          </div>
+      </section>
+  
+
+       
+    </body>
+  </html>
+

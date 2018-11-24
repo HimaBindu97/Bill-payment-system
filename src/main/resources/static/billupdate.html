@@ -1,0 +1,288 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Cognizant - Bill Payment System</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="css\bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="css\font-awesome.min.css">
+<!-- Google fonts - Poppins-->
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Poppins:300,400,600">
+<!-- Custom font icons-->
+<link rel="stylesheet" href="css\fontastic.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="css\style.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="css\main.css">
+<!-- Favicon-->
+<!-- Tweaks for older IEs-->
+<!--[if lt IE 9]>
+       <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script><![endif]-->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+
+<script src="js/bill.js"></script>
+
+<script src="js/jquery.js"></script>
+
+<script src="js/bootstrap.js"></script>
+
+<script src="js/script.js"></script>
+
+</head>
+
+<body onpageshow="init()">
+
+	<!-- navbar-->
+
+	<header class="header">
+
+		<nav class="navbar navbar-expand-lg fixed-top">
+			<span
+				style="font-size: 30px; cursor: pointer; color: rgb(250, 84, 112)"
+				onclick="openNav()">&#9776;</span>
+
+			<script>
+				function openNav() {
+					document.getElementById("myNav").style.width = "17%";
+				}
+
+				function closeNav() {
+					document.getElementById("myNav").style.width = "0%";
+				}
+			</script>
+			<div id="myNav" class="overlay">
+
+
+				<br>
+				<a href="./" class="navbar-brand"><img src="images\icon.png"
+					alt="" class="img-fluid logo"></a> <a href="javascript:void(0)"
+					class="closebtn" onclick="closeNav()">&times;</a>
+
+				<div class="overlay-content">
+
+					<a href="/dashboard.html">Home</a> <a href="/registerVendor.html">Register
+						Vendor</a> <a href="updateVendor.html">Update Vendor</a> <a
+						href="/registerCustomer.html">Register Customer</a> <a
+						href="/updateCustomer.html">Update Customer</a> <a
+						href="/billupdate.html">Pay your Bill</a>
+
+				</div>
+
+
+			</div>
+
+			<div class="container text-center">
+				<h1 class="hero-heading">Bill Payment Form</h1>
+				<a 
+					class="btn btn-primary navbar-btn ml-0 ml-lg-3 login-button" onclick="logout()">Logout
+				</a>
+			</div>
+			</div>
+			</div>
+		</nav>
+
+	</header>
+
+
+
+	<!-- Hero Section-->
+
+	<section class="hero">
+
+
+
+
+
+		<div class="container guide-line">
+
+			<header class="section-header">
+				<p class="lead">Please submit your information</p>
+
+			</header>
+
+		</div>
+
+
+
+
+
+		<div class="container query-form">
+
+			<div class="row align-items-center mt-5">
+
+				<div class="col-lg-7">
+
+					<form onsubmit="return false" name="details-form"
+						class="contact-form text-left">
+
+						<div class="form-group mb-4">
+
+							<label>CustomerId<sup class="text-primary">&#10033;</sup></label>
+							<input type="text" id="CustomerId" placeholder="e.g. xxxx"
+								class="form-control" onchange="populateVType()">
+						</div>
+
+						<div class="form-group mb-4">
+							<label>vendorType<sup class="text-primary">&#10033;</sup></label>
+							<select id="vendorType" onchange="populateNames()"></select>
+							<!--   class="form-control"
+                                                       style="font-size: 10px" -->
+						</div>
+						<div class="form-group mb-4">
+							<label>vendorName<sup class="text-primary">&#10033;</sup></label>
+							<select id="vendorName"></select>
+							<!-- class="form-control"
+                                                       style="font-size: 10px" -->
+						</div>
+
+						<div class="form-group mb-4">
+
+							<label>Bill Amount<sup class="text-primary">&#10033;</sup></label>
+
+							<input type="number" id="amount" placeholder="e.g. 1000"
+								class="form-control" disabled>
+						</div>
+
+						<div class="form-group">
+
+							<input type="submit" value="Proceed" onclick="Details()"
+								class="btn btn-primary">
+
+						</div>
+
+					</form>
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+		<div class="icon-container image-form">
+
+			<label for="fname">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Accepted
+				Cards</label><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			<i class="fa fa-cc-visa" style="color: navy;"></i> <i
+				class="fa fa-cc-amex" style="color: blue;"></i> <i
+				class="fa fa-cc-mastercard" style="color: red;"></i> <i
+				class="fa fa-cc-discover" style="color: orange;"></i>
+		</div>
+		<br>
+
+		<div class="form-group mb-4">
+
+			<div class="col-50"></div>
+
+
+
+
+			<form onsubmit="return false" class="contact-form text-left"
+				id="payment-form" name="payment-form">
+				<div class="container payment-form">
+
+					<div class="form-group mb-4"></div>
+
+					<div class="form-group mb-4">
+						<label>Card Type<sup class="text-primary">&#10033;</sup></label>
+						<form action="/action_page.php">
+							<select id="cardType">
+								<option value="Amex">Amex</option>
+								<option value="Master Card">Master Card</option>
+								<option value="Visa">Visa</option>
+								<option value="Rupay">Rupay</option>
+							</select>
+
+						</form>
+					</div>
+
+					<div class="col-50">
+
+
+
+
+
+						<div class="col-lg-7">
+							<label>Card Number<sup class="text-primary">&#10033;</sup></label>
+							<input type="text" id="cardNumber" name="cardNum"
+								placeholder="XXXX-XXXX-XXXX-XXXX" class="form-control"
+								onchange="checkCard()">
+						</div>
+
+						<!-- <div class="col-lg-7">
+                        <label>Confirm Card Number<sup class="text-primary">&#10033;</sup></label>
+                        <input type="text" name="confirmcardNum" placeholder="XXXX-XXXX-XXXX-XXXX" class="form-control">
+                      </div> -->
+
+						<div style="padding-top: 2mm; padding-bottom: 2mm;"></div>
+
+						<div class="col-50">
+
+							<div class="col-lg-7">
+								<label>Card Validity<sup class="text-primary">&#10033;</sup></label>
+								<input type="month" id="cardValidity" name="validityMonth" class="form-control">
+								<!--   min='new Date()'
+                                                       <script>
+                                                              document.getElementById('vailidityMonth').min = new Date().toString().substring(0, 10);
+                                                       </script> -->
+							</div>
+
+							<div style="padding-top: 2mm; padding-bottom: 2mm;"></div>
+
+						</div>
+
+						<div class="col-lg-7">
+							<label>CVV number<sup class="text-primary">&#10033;</sup></label>
+							<input type="text" id="cvv" name="cvv"
+								placeholder="found at the back of your card"
+								class="form-control">
+						</div>
+
+					</div>
+
+
+
+
+
+					<br>
+
+					<div class="form-group">
+
+						<input type="submit" value="PayBill" onclick="saveCard()"
+							class="btn btn-primary">
+
+					</div>
+				</div>
+			</form>
+	</section>
+
+
+
+
+
+	<!-- JavaScript files-->
+
+	<!-- JavaScript files-->
+
+
+
+</body>
+
+</html>
+
+

@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>Cognizant - Bill Payment System</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="all,follow">
+<!-- Bootstrap CSS-->
+<link rel="stylesheet" href="css\bootstrap.min.css">
+<!-- Font Awesome CSS-->
+<link rel="stylesheet" href="css\font-awesome.min.css"> 
+<!-- Google fonts - Poppins-->
+<link rel="stylesheet"
+	href="//fonts.googleapis.com/css?family=Poppins:300,400,600">
+<!-- Custom font icons-->
+<link rel="stylesheet" href="css\fontastic.css">
+<!-- theme stylesheet-->
+<link rel="stylesheet" href="css\style.css" id="theme-stylesheet">
+<!-- Custom stylesheet - for your changes-->
+<link rel="stylesheet" href="css\main.css">
+
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+<script
+	src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+<script src="js/bootstrap.js"></script>
+<script src="js/updateCustomer.js"></script>
+<script src="js/countries.js"></script>
+<script src="js/script.js"></script>
+<script src="js/dashboard.js"></script>
+</head>
+
+<body  onpageshow="init()">
+	<!-- comment 1 onpageshow="init()" -->
+	<header class="header">
+		<nav class="navbar navbar-expand-lg fixed-top">
+			<span
+				style="font-size: 30px; cursor: pointer; color: rgb(250, 84, 112)"onclick="openNav()">&#9776;</span>
+
+			<script>
+				function openNav() {
+					document.getElementById("myNav").style.width = "17%";
+				}
+
+				function closeNav() {
+					document.getElementById("myNav").style.width = "0%";
+				}
+			</script>
+			<!-- <div class="container"><a href="./" class="navbar-brand"><img src="images\icon.png" alt="" class="img-fluid logo"></a> -->
+			<div id="myNav" class="overlay">
+				  <br><a href="./" class="navbar-brand"><img src="images\icon.png" alt="" class="img-fluid logo"></a>
+                      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+				<div class="overlay-content">
+					<a href="/dashboard.html">Home</a>
+                          <a href="/registerVendor.html">Register Vendor</a>
+                          <a href="updateVendor.html">Update Vendor</a>
+                          <a href="/registerCustomer.html">Register Customer</a>
+                          <a href="/updateCustomer.html">Update Customer</a>
+                          <a href="/billupdate.html">Pay your Bill</a>
+				</div>
+
+			</div>
+			<div class="container text-center">
+				<h1 class="hero-heading">Customer Update Form</h1>
+				<!-- <div class="row">
+                  <div class="col-lg-7 mx-auto">
+                    <p class="lead text-muted mt-2">Register the vendor by providing all necessary information.</p>
+                  </div>
+                </div> -->
+				<a href="index.html"
+					class="btn btn-primary navbar-btn ml-0 ml-lg-3 login-button" onclick="logout()">Logout
+				</a>
+			</div>
+			</div>
+		</nav>
+
+		</div>
+		</div>
+	</header>
+
+
+	<!-- Hero Section-->
+	<section class="hero">
+
+		<br>
+		<div class="container text-center customer-search">
+			<div class="col-lg-8">
+				<form action="#" class="subscription-form" id="cSearch"
+					action="javascript:return getFalse()">
+					
+					<div class="form-group">
+						<input type="text" id="customerIdQuery" placeholder="Customer ID"
+							class="form-control">
+						<button type="submit" onclick="showUpdate()"
+							class="btn btn-primary">Get customer details</button>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="container customer-details">
+			<header class="section-header">
+				<h2 class="mb-2">
+					Customer Id : <span id="customerId"> </span>
+				</h2>
+				<p class="lead">Please update required fields to update customer
+					information in system.</p>
+			</header>
+		</div>
+
+		<div class="container customer-form">
+			<div class="row align-items-center mt-5">
+				<div class="col-lg-7">
+					<form action="#" class="contact-form text-left">
+						<div class="form-group mb-4">
+							<label>Name<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerName" name="name"
+								placeholder="e.g. John Smith" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Address<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerAddress" name="address"
+								placeholder="e.g. Ward Nno 8,Thiruvalluvar street ,"
+								class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Number<sup class="text-primary">&#10033;</sup></label> <input
+								type="number" id="customerContactNumber" name="number"
+								placeholder="e.g. 9876567898" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Email<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerEmail" name="email"
+								placeholder="name@company.com" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Country<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerCountry" name="country"
+								placeholder="Select" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>State<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerState" name="state" placeholder="Select"
+								class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>ID<sup class="text-primary">&#10033;</sup></label> <input
+								type="text" id="customerIdentity" name="id" placeholder="Aadhar"
+								class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>DocumentDetail<sup class="text-primary">&#10033;</sup></label>
+							<input type="number" id="customerDocumentDetailNumber"
+								name="Document Detail Number" placeholder="011-222-333"
+								class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>VendorType<sup class="text-primary">&#10033;</sup></label><br>
+							<input type="checkbox" id="electricityType" value="Electricity">Electricity<br>
+							<input type="checkbox" id="telephoneType" value="Telephone">Telephone<br>
+							<input type="checkbox" id="insuranceType" value="Insurance">Insurace<br>
+							<input type="checkbox" id="taxType" value="Tax">Tax<br>
+						</div>
+						<div class="form-group mb-4">
+							<label>RegDate<sup class="text-primary">&#10033;</sup></label> <input
+								type="date" id="customerRegistrationDate" name="regdate"
+								class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>CardNo<sup class="text-primary">&#10033;</sup></label> <input
+								type="number" id="customerCardNo" name="cardno"
+								placeholder="011-222-333" class="form-control">
+						</div>
+						<div class="form-group mb-4">
+							<label>Balance<sup class="text-primary">&#10033;</sup></label> <input
+								type="number" id="customerBalance" name="balance"
+								placeholder="Rs 10000" class="form-control">
+						</div>
+						<div class="form-group">
+							<input type="submit" value="Register"
+								onclick="registerCustomer()" class="btn btn-primary">
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+	</section>
+
+
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/jquery.validate.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/jquery.validation/1.16.0/additional-methods.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/updateCustomer.js"></script>
+	<script src="js/countries.js"></script>
+	<script src="js/script.js"></script>
+	<script src="js/dashboard.js"></script>
+
+</body>
+</html>

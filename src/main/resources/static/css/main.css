@@ -1,0 +1,77 @@
+/* your styles go here */
+
+.logo{
+    max-width: 50%;
+
+}
+
+.login-button{
+    float: right;
+}
+
+.sidebar{
+    display: flex;
+}
+
+/* .message{
+    color:red;
+} */
+
+form .error {
+    color: #ff0000;
+  }
+
+  .overlay {
+    height: 100%;
+    width: 0%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(235, 92, 118);
+    background-color: rgb(234, 91, 117);
+    overflow-x: hidden;
+    transition: 0.3s;
+}
+
+.overlay-content {
+    position: relative;
+    top: 15%;
+    width: 100%;
+    text-align: left;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.overlay a {
+    padding: 4px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #ffffff;
+    display: block;
+    transition: 0.2s;
+}
+
+.overlay a:hover, .overlay a:focus {
+    color: #970303;
+}
+
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 40px;
+}
+
+@media screen and (max-height: 450px) {
+  .overlay a {font-size: 20px}
+  .overlay .closebtn {
+    font-size: 40px;
+    top: 5px;
+    right: 35px;
+  }
+}
+i { 
+    font-style: italic;
+}
+
